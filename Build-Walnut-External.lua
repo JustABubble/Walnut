@@ -3,20 +3,26 @@
 VULKAN_SDK = os.getenv("VULKAN_SDK")
 
 IncludeDir = {}
-IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
+LibraryDir = {}
+Library = {}
+
 IncludeDir["glm"] = "../vendor/glm"
 IncludeDir["spdlog"] = "../vendor/spdlog/include"
 
-LibraryDir = {}
-LibraryDir["VulkanSDK"] = "%{VULKAN_SDK}/Lib"
-
-Library = {}
-Library["Vulkan"] = "%{LibraryDir.VulkanSDK}/vulkan-1.lib"
+if _TARGET_OS == "windows" then
+    IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
+    LibraryDir["VulkanSDK"] = "%{VULKAN_SDK}/Lib"
+    Library["Vulkan"] = "%{LibraryDir.VulkanSDK}/vulkan-1.lib"
+else
+    IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/include"
+    LibraryDir["VulkanSDK"] = "%{VULKAN_SDK}/lib"
+    Library["Vulkan"] = "vulkan"
+end
 
 group "Dependencies"
-   include "vendor/imgui"
-   include "vendor/glfw"
-   include "vendor/yaml-cpp"
+    include "vendor/imgui"
+    include "vendor/GLFW"
+    include "vendor/yaml-cpp"
 group ""
 
 group "Core"

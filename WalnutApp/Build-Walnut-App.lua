@@ -10,7 +10,7 @@ project "WalnutApp"
    includedirs
    {
       "../vendor/imgui",
-      "../vendor/glfw/include",
+      "../vendor/GLFW/include",
 
       "../Walnut/Source",
       "../Walnut/Platform/GUI",
@@ -21,7 +21,10 @@ project "WalnutApp"
 
     links
     {
-        "Walnut"
+        "Walnut",
+        "GLFW",
+        "ImGui",
+        "%{Library.Vulkan}"
     }
 
    targetdir ("../bin/" .. outputdir .. "/%{prj.name}")

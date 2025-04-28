@@ -20,7 +20,7 @@ project "Walnut"
       "Platform/GUI",
 
       "../vendor/imgui",
-      "../vendor/glfw/include",
+      "../vendor/GLFW/include",
       "../vendor/stb_image",
 
       "%{IncludeDir.VulkanSDK}",
