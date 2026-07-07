@@ -1,6 +1,7 @@
 # Directories
 .vs/
 .cache/
+build/
 
 # Files
 *.vcxproj
