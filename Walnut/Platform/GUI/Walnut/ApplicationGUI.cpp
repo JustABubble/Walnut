@@ -492,7 +492,7 @@ namespace Walnut {
 		}
 
 		glfwSetWindowUserPointer(m_WindowHandle, this);
-		glfwSetTitlebarHitTestCallback(m_WindowHandle, [](GLFWwindow* window, int x, int y, int* hit)
+		glfwSetTitlebarHitTestCallback(m_WindowHandle, [](GLFWwindow* window, int /*x*/, int /*y*/, int* hit)
 		{
 			Application* app = (Application*)glfwGetWindowUserPointer(window);
 			*hit = app->IsTitleBarHovered();
@@ -710,8 +710,8 @@ namespace Walnut {
 
 		ImGui::BeginHorizontal("Titlebar", { ImGui::GetWindowWidth() - windowPadding.y * 2.0f, ImGui::GetFrameHeightWithSpacing() });
 
-		static float moveOffsetX;
-		static float moveOffsetY;
+		// static float moveOffsetX;
+		// static float moveOffsetY;
 		const float w = ImGui::GetContentRegionAvail().x;
 		const float buttonsAreaWidth = 94;
 
@@ -769,7 +769,7 @@ namespace Walnut {
 		ImGui::Spring();
 		UI::ShiftCursorY(8.0f);
 		{
-			const int iconWidth = m_IconMinimize->GetWidth();
+			// const int iconWidth = m_IconMinimize->GetWidth();
 			const int iconHeight = m_IconMinimize->GetHeight();
 			const float padY = (buttonHeight - (float)iconHeight) / 2.0f;
 			if (ImGui::InvisibleButton("Minimize", ImVec2(buttonWidth, buttonHeight)))
@@ -789,8 +789,8 @@ namespace Walnut {
 		ImGui::Spring(-1.0f, 17.0f);
 		UI::ShiftCursorY(8.0f);
 		{
-			const int iconWidth = m_IconMaximize->GetWidth();
-			const int iconHeight = m_IconMaximize->GetHeight();
+			// const int iconWidth = m_IconMaximize->GetWidth();
+			// const int iconHeight = m_IconMaximize->GetHeight();
 
 			const bool isMaximized = IsMaximized();
 
@@ -812,8 +812,8 @@ namespace Walnut {
 		ImGui::Spring(-1.0f, 15.0f);
 		UI::ShiftCursorY(8.0f);
 		{
-			const int iconWidth = m_IconClose->GetWidth();
-			const int iconHeight = m_IconClose->GetHeight();
+			// const int iconWidth = m_IconClose->GetWidth();
+			// const int iconHeight = m_IconClose->GetHeight();
 			if (ImGui::InvisibleButton("Close", ImVec2(buttonWidth, buttonHeight)))
 				Application::Get().Close();
 
@@ -959,7 +959,7 @@ namespace Walnut {
 				}
 
 				// Dockspace
-				ImGuiIO& io = ImGui::GetIO();
+				// ImGuiIO& io = ImGui::GetIO();
 				ImGuiStyle& style = ImGui::GetStyle();
 				float minWinSizeX = style.WindowMinSize.x;
 				style.WindowMinSize.x = 370.0f;
@@ -1051,7 +1051,7 @@ namespace Walnut {
 		return g_Device;
 	}
 
-	VkCommandBuffer Application::GetCommandBuffer(bool begin)
+	VkCommandBuffer Application::GetCommandBuffer(bool /*begin*/)
 	{
 		ImGui_ImplVulkanH_Window* wd = &g_MainWindowData;
 

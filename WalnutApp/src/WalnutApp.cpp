@@ -58,6 +58,9 @@ private:
 
 Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 {
+	(void)argc;
+	(void)argv;
+
 	Walnut::ApplicationSpecification spec;
 	spec.Name = "Walnut Example";
 	spec.CustomTitlebar = true;

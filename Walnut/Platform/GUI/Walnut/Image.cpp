@@ -1,6 +1,5 @@
 #include "Image.h"
 
-#include "imgui.h"
 #include "backends/imgui_impl_vulkan.h"
 
 #include "ApplicationGUI.h"
@@ -31,8 +30,8 @@ namespace Walnut {
 			{
 				case ImageFormat::RGBA:    return 4;
 				case ImageFormat::RGBA32F: return 16;
+				case ImageFormat::None:    return 0;
 			}
-			return 0;
 		}
 		
 		static VkFormat WalnutFormatToVulkanFormat(ImageFormat format)
@@ -41,8 +40,8 @@ namespace Walnut {
 			{
 				case ImageFormat::RGBA:    return VK_FORMAT_R8G8B8A8_UNORM;
 				case ImageFormat::RGBA32F: return VK_FORMAT_R32G32B32A32_SFLOAT;
+				case ImageFormat::None:    return (VkFormat)0;
 			}
-			return (VkFormat)0;
 		}
 
 	}
@@ -85,7 +84,7 @@ namespace Walnut {
 		Release();
 	}
 
-	void Image::AllocateMemory(uint64_t size)
+	void Image::AllocateMemory(uint64_t /*size*/)
 	{
 		VkDevice device = Application::GetDevice();
 
@@ -292,10 +291,10 @@ namespace Walnut {
 	{
 		int width, height, channels;
 		uint8_t* data = nullptr;
-		uint64_t size = 0;
+		// uint64_t size = 0;
 
 		data = stbi_load_from_memory((const stbi_uc*)buffer, length, &width, &height, &channels, 4);
-		size = width * height * 4;
+		// size = width * height * 4;
 
 		outWidth = width;
 		outHeight = height;

@@ -48,7 +48,7 @@ namespace Walnut::UI {
 		return RectOffset(rect, xy.x, xy.y);
 	}
 
-	void DrawButtonImage(const std::shared_ptr<Walnut::Image>& imageNormal, const std::shared_ptr<Walnut::Image>& imageHovered, const std::shared_ptr<Walnut::Image>& imagePressed,
+	void DrawButtonImage(const std::shared_ptr<Walnut::Image>& /*imageNormal*/, const std::shared_ptr<Walnut::Image>& /*imageHovered*/, const std::shared_ptr<Walnut::Image>& imagePressed,
 		ImU32 tintNormal, ImU32 tintHovered, ImU32 tintPressed,
 		ImVec2 rectMin, ImVec2 rectMax)
 	{
@@ -260,7 +260,7 @@ namespace Walnut::UI {
 		int border_held = -1;
 		ImU32 resize_grip_col[4] = {};
 		const int resize_grip_count = g.IO.ConfigWindowsResizeFromEdges ? 2 : 1; // Allow resize from lower-left if we have the mouse cursor feedback for it.
-		const float resize_grip_draw_size = IM_FLOOR(ImMax(g.FontSize * 1.10f, window->WindowRounding + 1.0f + g.FontSize * 0.2f));
+		// const float resize_grip_draw_size = IM_FLOOR(ImMax(g.FontSize * 1.10f, window->WindowRounding + 1.0f + g.FontSize * 0.2f));
 		window->ResizeBorderHeld = (signed char)border_held;
 
 		//const ImRect& visibility_rect;
@@ -335,7 +335,7 @@ namespace Walnut::UI {
 		if (window->WasActive == false) // Early out to avoid running this code for e.g. an hidden implicit/fallback Debug window.
 			return false;
 
-		bool ret_auto_fit = false;
+		// bool ret_auto_fit = false;
 		const int resize_border_count = g.IO.ConfigWindowsResizeFromEdges ? 4 : 0;
 		const float grip_draw_size = IM_FLOOR(ImMax(g.FontSize * 1.35f, window->WindowRounding + 1.0f + g.FontSize * 0.2f));
 		const float grip_hover_inner_size = IM_FLOOR(grip_draw_size * 0.75f);
@@ -346,7 +346,7 @@ namespace Walnut::UI {
 
 		// Calculate the range of allowed position for that window (to be movable and visible past safe area padding)
 		// When clamping to stay visible, we will enforce that window->Pos stays inside of visibility_rect.
-		ImRect viewport_rect(window->Viewport->GetMainRect());
+		// ImRect viewport_rect(window->Viewport->GetMainRect());
 		ImRect viewport_work_rect(window->Viewport->GetWorkRect());
 		ImVec2 visibility_padding = ImMax(style.DisplayWindowPadding, style.DisplaySafeAreaPadding);
 		ImRect visibility_rect({ viewport_work_rect.Min.x + visibility_padding.x, viewport_work_rect.Min.y + visibility_padding.y },
@@ -391,7 +391,7 @@ namespace Walnut::UI {
 			{
 				// Manual auto-fit when double-clicking
 				size_target = CalcWindowSizeAfterConstraint(window, size_auto_fit);
-				ret_auto_fit = true;
+				// ret_auto_fit = true;
 				ImGui::ClearActiveID();
 			}
 			else if (held)
@@ -538,7 +538,7 @@ namespace Walnut::UI {
 		window->DC.MenuBarAppending = false;
 	}
 
-	bool ButtonCentered(const char* label, const ImVec2& size)
+	bool ButtonCentered(const char* label, const ImVec2& /*size*/)
 	{
 		ImGuiStyle& style = ImGui::GetStyle();
 
