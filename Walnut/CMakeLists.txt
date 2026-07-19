@@ -29,4 +29,9 @@ target_compile_options(${PROJECT_NAME} PUBLIC
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -pedantic>
     $<$<CXX_COMPILER_ID:MSVC>:/WX /W4>)
 
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    $<$<CONFIG:Debug>:WL_DEBUG>
+    $<$<CXX_COMPILER_ID:MSVC>:WL_PLATFORM_WINDOWS>
+    $<$<CXX_COMPILER_ID:Clang>:WL_COMPILER_CLANG>)
+
 target_link_libraries(${PROJECT_NAME} PUBLIC Vulkan::Vulkan glfw imgui spdlog)
